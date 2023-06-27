@@ -1,4 +1,15 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿let isHamburgerMenuExpended = false;
+const hamburgerMenu = document.querySelector(".hamburger-menu");
+hamburgerMenu.addEventListener("click", e => {
+    isHamburgerMenuExpended = !isHamburgerMenuExpended;
 
-// Write your JavaScript code.
+    console.log("Open/Close nav menu " + isHamburgerMenuExpended);
+});
+
+const navItems = hamburgerMenu.querySelectorAll(".navigation-item");
+navItems.forEach(item => {
+    item.addEventListener("click", e => {
+        console.log("Navigate somewhere");
+        document.location.href = item.dataset.link;
+    });
+});

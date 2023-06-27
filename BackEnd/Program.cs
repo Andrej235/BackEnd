@@ -1,6 +1,7 @@
 using BackEnd;
 using BackEnd.Data;
 using BackEnd.Models;
+using System.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,10 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "api",
+    pattern: "{controller = UserController}/{action=Get}/{id?}");
 
 MainBackEnd.Start();
 app.Run();

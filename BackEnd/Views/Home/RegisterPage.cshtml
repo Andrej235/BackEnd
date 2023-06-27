@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = "Register Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+
+<body>
+
+    <div class="center-children-grid">
+        <div id="popup" class="popup-appear">
+            <div id="popup-btn"></div>
+            <h1 id="log-in-title">Welcome!</h1>
+
+            <div class="center-children-grid">
+                <input type="text" name="emailInput" placeholder="Email" class="input-field email-input">
+                <input type="password" name="passwordInput" placeholder="Password" class="input-field password-input">
+                <input type="password" name="repeatPasswordInput" placeholder="Repeat password"
+                    class="input-field password-input repeat-password-input">
+
+                    <div class="center-children-grid">
+                    <div class="submit-btn center-children-grid">
+                        <h1 class="submit-btn-title">Register</h1>
+                    </div>
+                    <a id="login-link" asp-area="" asp-controller="Home" asp-action="LoginPage">Log In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/main.js"></script>
+    <script src="~/js/registerpage.js"></script>
+</body>
+
+</html>

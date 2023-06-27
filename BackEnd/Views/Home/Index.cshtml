@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-    var products = MainBackEnd.GetAllProducts();
+    var users = MainBackEnd.GetAllProducts();
 }
 
 <div class="text-center">
@@ -9,11 +9,12 @@
 </div>
 
 <table>
-    @foreach (var product in products)
+    @foreach (var user in users)
     {
         <tr>
-            <td>@product.Id</td>
-            <td>@product.Name</td>
+            <td>@user.Id</td>
+            <td>@user.Email</td>
+            <td>@user.Password</td>
         </tr>
     }
 </table>

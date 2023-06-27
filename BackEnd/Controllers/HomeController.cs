@@ -17,8 +17,13 @@ namespace BackEnd.Controllers
         {
             return View();
         }
-
-        public IActionResult Privacy()
+        
+        public IActionResult RegisterPage()
+        {
+            return View();
+        }
+        
+        public IActionResult LoginPage()
         {
             return View();
         }
