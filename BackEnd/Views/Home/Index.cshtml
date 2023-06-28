@@ -1,20 +1,22 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-    var users = MainBackEnd.GetAllProducts();
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+    <link rel="stylesheet" href="~/css/homePageStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <h1 id="time-title"></h1>
+    <h2 id="date-title"></h2>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-
-<table>
-    @foreach (var user in users)
-    {
-        <tr>
-            <td>@user.Id</td>
-            <td>@user.Email</td>
-            <td>@user.Password</td>
-        </tr>
-    }
-</table>
+    <div class="center-children">
+        <div id="weather">
+            <p id="weather-forecast">Clear :: 21C</p>
+            <p class="weather-icon"></p>
+        </div>
+    </div>
+    <script src="~/js/homePage.js"></script>
+</body>
+</html>

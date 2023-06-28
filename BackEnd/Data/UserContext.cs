@@ -5,7 +5,7 @@ namespace BackEnd.Data
 {
     public class UserContext : DbContext
     {
-        public DbSet<User> User { get; set; }
+        public DbSet<User> User { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

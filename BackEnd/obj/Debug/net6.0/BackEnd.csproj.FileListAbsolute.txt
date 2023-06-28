@@ -71,9 +71,7 @@ C:\FolderOfFolders\Code\.LeetCode\BackEnd\BackEnd\obj\Debug\net6.0\staticwebasse
 C:\FolderOfFolders\Code\.LeetCode\BackEnd\BackEnd\obj\Debug\net6.0\staticwebassets.pack.json
 C:\FolderOfFolders\Code\.LeetCode\BackEnd\BackEnd\obj\Debug\net6.0\staticwebassets.build.json
 C:\FolderOfFolders\Code\.LeetCode\BackEnd\BackEnd\obj\Debug\net6.0\staticwebassets.development.json
-C:\FolderOfFolders\Code\.LeetCode\BackEnd\BackEnd\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\FolderOfFolders\Code\.LeetCode\BackEnd\BackEnd\obj\Debug\net6.0\scopedcss\bundle\BackEnd.styles.css
-C:\FolderOfFolders\Code\.LeetCode\BackEnd\BackEnd\obj\Debug\net6.0\scopedcss\projectbundle\BackEnd.bundle.scp.css
 C:\FolderOfFolders\Code\.LeetCode\BackEnd\BackEnd\obj\Debug\net6.0\BackEnd.csproj.CopyComplete
 C:\FolderOfFolders\Code\.LeetCode\BackEnd\BackEnd\obj\Debug\net6.0\BackEnd.dll
 C:\FolderOfFolders\Code\.LeetCode\BackEnd\BackEnd\obj\Debug\net6.0\refint\BackEnd.dll

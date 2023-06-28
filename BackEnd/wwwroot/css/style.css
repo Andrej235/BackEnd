@@ -1,6 +1,8 @@
 body {
-    overflow: hidden;
-    background-color: #000;
+    background: #181818;
+    z-index: -1;
+    margin: 0;
+    padding: 0;
 }
 
 .center-children-grid {

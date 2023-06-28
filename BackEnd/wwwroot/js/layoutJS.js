@@ -1,8 +1,19 @@
-﻿let isHamburgerMenuExpended = false;
+﻿const blob = document.querySelector("#blob");
+document.body.onpointermove = e => {
+    blob.animate(
+        {
+            left: `${e.x}px`,
+            top: `${e.y}px`
+        }, { duration: speed, fill: 'forwards' }
+    );
+};
+
+let isHamburgerMenuExpended = false;
 const hamburgerMenu = document.querySelector(".hamburger-menu");
 hamburgerMenu.addEventListener("click", e => {
-    isHamburgerMenuExpended = !isHamburgerMenuExpended;
+    hamburgerMenu.querySelector(".navigation-items-list").classList.toggle("active");
 
+    isHamburgerMenuExpended = !isHamburgerMenuExpended;
     console.log("Open/Close nav menu " + isHamburgerMenuExpended);
 });
 
