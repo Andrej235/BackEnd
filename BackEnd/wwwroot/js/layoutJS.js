@@ -1,12 +1,15 @@
-﻿const blob = document.querySelector("#blob");
-document.body.onpointermove = e => {
-    blob.animate(
-        {
-            left: `${e.x}px`,
-            top: `${e.y}px`
-        }, { duration: speed, fill: 'forwards' }
-    );
-};
+﻿//AddBlobEffectToMouse();
+function AddBlobEffectToMouse(blobID = "blob", speed = 5000) {
+    const blob = document.querySelector(`#${blobID}`);
+    document.onpointermove = e => {
+        blob.animate(
+            {
+                left: `${e.x}px`,
+                top: `${e.y}px`
+            }, { duration: speed, fill: 'forwards' }
+        );
+    };
+}
 
 let isHamburgerMenuExpended = false;
 const hamburgerMenu = document.querySelector(".hamburger-menu");

@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\css\\style.css"
     },
     {
+      "Id": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\css\\taskPageStyle.css",
+      "PackagePath": "staticwebassets\\css\\taskPageStyle.css"
+    },
+    {
       "Id": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
@@ -39,6 +43,10 @@
     {
       "Id": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\js\\registerpage.js",
       "PackagePath": "staticwebassets\\js\\registerpage.js"
+    },
+    {
+      "Id": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\js\\taskPageLogic.js",
+      "PackagePath": "staticwebassets\\js\\taskPageLogic.js"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.BackEnd.Microsoft.AspNetCore.StaticWebAssets.props",

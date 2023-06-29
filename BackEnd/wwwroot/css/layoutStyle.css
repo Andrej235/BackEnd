@@ -3,6 +3,7 @@ body {
     z-index: -1;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 .hamburger-menu {
@@ -87,13 +88,14 @@ body {
 /*Blob*/
 
 #blob {
-    height: 35vh;
+    height: 10vh;
     aspect-ratio: 1;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: -1;
+    cursor: none;
 }
 
 #blob .blob-bg {
@@ -103,19 +105,23 @@ body {
     border-radius: 100%;
     background: linear-gradient(to right, aquamarine, mediumpurple);
     animation: rotateBlob 20s infinite linear;
-    filter: blur(150px);
+    filter: blur(50px);
+    opacity: 0.4;
 }
 
 @keyframes rotateBlob {
     from {
         transform: rotate(0deg);
+        opacity: 0.4;
     }
 
     50% {
-        transform: rotate(180deg) scale(1.1, 1.25);
+        transform: rotate(180deg) scale(1, 1.33);
+        opacity: 0.5;
     }
 
     to {
         transform: rotate(360deg);
+        opacity: 0.4;
     }
 }

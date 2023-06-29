@@ -16,7 +16,7 @@
     Inside a div with the id of blobID needs to be another div which will have the background and have transform: translate(0, 0), while the blobID should have transform: translate(-50%, -50%)
 */
 
-function AddRandomizedEffectToClass(className = "randomized-text-effect", iterationsPerLetter = 5, iterationsPerSecond = 30, lettersForRandomization = "ABCDEFGHIJKLMNOPRSTUVWXYZ") {
+export function AddRandomizedEffectToClass(className = "randomized-text-effect", iterationsPerLetter = 5, iterationsPerSecond = 30, lettersForRandomization = "ABCDEFGHIJKLMNOPRSTUVWXYZ") {
     document.querySelectorAll(`.${className}`).forEach(item => {
         if (!item.hasAttribute("data-value")) {
             console.warn(`Element ${item.nodeName} ${item.id != "" ? `With ID: ${item.id} ` : ""}doesn't have the "data-value" attribute and so is unable to be affected by the RandomizedLetters Effect`);
@@ -39,7 +39,7 @@ function AddRandomizedEffectToClass(className = "randomized-text-effect", iterat
     });
 }
 
-function AddBlobEffectToMouse(blobID = "blob", speed = 5000) {
+export function AddBlobEffectToMouse(blobID = "blob", speed = 5000) {
     const blob = document.querySelector(`#${blobID}`);
     document.body.onpointermove = e => {
         blob.animate(

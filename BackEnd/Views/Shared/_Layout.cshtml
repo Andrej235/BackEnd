@@ -10,13 +10,14 @@
 </head>
 
 <body>
-    <div id="blob">
+@*    <div id="blob">
         <div class="blob-bg"></div>
-    </div>
+    </div>*@
 
     <div class="hamburger-menu fa-solid fa-bars">
         <ul class="navigation-items-list">
             <li class="fa-solid fa-house navigation-item" data-link="../Home/Index"></li>
+            <li class="fa-solid fa-list-check navigation-item" data-link="../Home/TaskPage"></li>
             <li class="fa-solid fa-user navigation-item" data-link="../Home/LoginPage"></li>
         </ul>
     </div>
@@ -27,8 +28,7 @@
         </main>
     </div>
 
-    <script src="~/js/layoutJS.js"></script>
-    <script src="~/js/FancyEffects.js"></script>
+    <script type="module" src="~/js/layoutJS.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

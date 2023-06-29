@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Awp465wyu6xt/veOxg2sNiwWzSkaDcjDvEEjSHDB0zo=",
+  "Hash": "AaoGljhkdEEoe2kw9huioB4tK1bux/Lylo8+AZ7kip4=",
   "Source": "BackEnd",
   "BasePath": "_content/BackEnd",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\style.css"
+    },
+    {
+      "Identity": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\css\\taskPageStyle.css",
+      "SourceId": "BackEnd",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\",
+      "BasePath": "_content/BackEnd",
+      "RelativePath": "css/taskPageStyle.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\taskPageStyle.css"
     },
     {
       "Identity": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\favicon.ico",
@@ -185,6 +202,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\registerpage.js"
+    },
+    {
+      "Identity": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\js\\taskPageLogic.js",
+      "SourceId": "BackEnd",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\",
+      "BasePath": "_content/BackEnd",
+      "RelativePath": "js/taskPageLogic.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\taskPageLogic.js"
     }
   ]
 }

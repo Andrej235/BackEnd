@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Tasks Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/css/taskPageStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div id="day-title-wrapper">
+        <div class="arrow fa-solid fa-arrow-left"></div>
+        <h1 id="day-title"></h1>
+        <div class="arrow fa-solid fa-arrow-right"></div>
+    </div>
+
+    <h2 id="time-frame"></h2>
+
+    <table id="class-table"></table>
+
+    <template id="class-row-template">
+        <tr class="class-row" data-time-frame="" data-has-task="false">
+            <td class="class-number"></td>
+            <td class="class-name"></td>
+        </tr>
+    </template>
+    <script src="~/js/taskPageLogic.js"></script>
+</body>
+
+</html>

@@ -9,9 +9,9 @@ dateTitle.append(`${day.getDate()}.${day.getMonth()}.${day.getFullYear()}`);
 
 const weatherForecast = document.querySelector("#weather-forecast");
 const weatherIcon = document.querySelector(".weather-icon");
-//UpdateWeatherInfo();
+UpdateWeatherInfo();
 function UpdateWeatherInfo() {
-    fetch("http://api.weatherapi.com/v1/current.json?key=6d1cf624235d482eadd195003232106&q=Belgrade&aqi=no")
+    fetch("https://api.weatherapi.com/v1/current.json?key=6d1cf624235d482eadd195003232106 &q=Nova Pazova&aqi=no")
         .then(res => res.json())
         .then(res => {
             console.log(res);
