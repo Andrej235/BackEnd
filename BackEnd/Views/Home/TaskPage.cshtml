@@ -14,10 +14,20 @@
 </head>
 
 <body>
+    <div id="task-edit-btn" class="fa-solid fa-pencil"></div>
+
     <div id="day-title-wrapper">
         <div class="arrow fa-solid fa-arrow-left"></div>
         <h1 id="day-title"></h1>
         <div class="arrow fa-solid fa-arrow-right"></div>
+    </div>
+
+    <div id="task-wrapper">
+        <h1 id="task-type" class="active"></h1>
+        <h2 id="task-description" class="active"></h2>
+
+        <input type="text" id="task-type-edit-input" />
+        <input type="text" id="task-description-edit-input" />
     </div>
 
     <h2 id="time-frame"></h2>
@@ -30,7 +40,7 @@
             <td class="class-name"></td>
         </tr>
     </template>
-    <script src="~/js/taskPageLogic.js"></script>
+    <script type="module" src="~/js/taskPageLogic.js"></script>
 </body>
 
 </html>

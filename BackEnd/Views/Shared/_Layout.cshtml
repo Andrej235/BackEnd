@@ -10,8 +10,8 @@
 </head>
 
 <body>
-@*    <div id="blob">
-        <div class="blob-bg"></div>
+        @*    <div id="blob">
+    <div class="blob-bg"></div>
     </div>*@
 
     <div class="hamburger-menu fa-solid fa-bars">
@@ -24,12 +24,12 @@
 
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+                @RenderBody()
         </main>
     </div>
 
     <script type="module" src="~/js/layoutJS.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+        @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

@@ -19,9 +19,25 @@ namespace BackEnd.Controllers
 
         [HttpGet]
         [Route("api/user/getall")]
-        public async Task<IEnumerable<User>> Get()
+        public async Task<IEnumerable<User>> GetAllUsers()
         {
             return await context.User.ToListAsync();
+        }
+
+        [HttpGet]
+        [Route("api/user/getbyid/admin/{id}")]
+        public async Task<IActionResult> GetAdminPrivilagesByID(int id)
+        {
+            var user = await context.User.FindAsync(id);
+            return Ok(user != null && user.IsAdmin);
+        }
+
+        [HttpGet]
+        [Route("api/user/getbyid/{id}")]
+        public async Task<IActionResult> GetUserByID(int id)
+        {
+            var user = await context.User.FindAsync(id);
+            return user != null ? Ok(user) : NotFound();
         }
 
         [HttpGet]
@@ -34,7 +50,7 @@ namespace BackEnd.Controllers
 
         [HttpPost]
         [Route("api/user/create")]
-        public async void Add(User user)
+        public async void AddUser(User user)
         {
             await context.User.AddAsync(user);
             await context.SaveChangesAsync();
@@ -42,7 +58,7 @@ namespace BackEnd.Controllers
 
         [HttpDelete]
         [Route("api/user/delete/{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> DeleteUser(int id)
         {
             var user = await context.User.FindAsync(id);
             if (user == null)

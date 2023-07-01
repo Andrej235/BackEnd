@@ -1,3 +1,5 @@
+import { AddHoverAnimationsToButton, SaveUserID } from '/js/main.js'
+
 const loginBtn = document.querySelector(".submit-btn");
 AddHoverAnimationsToButton(loginBtn);
 
@@ -28,6 +30,7 @@ async function LogIn() {
             console.log(passwordInputField.value + "   " + res.password);
             if (passwordInputField.value === res.password) {
                 console.log("Logged in");
+                SaveUserID(res.id);
             }
             else {
                 console.log("Invalid log in information");

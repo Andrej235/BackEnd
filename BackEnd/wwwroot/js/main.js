@@ -1,4 +1,4 @@
-function AddHoverAnimationsToButton(btn) {
+export function AddHoverAnimationsToButton(btn) {
     btn.addEventListener("mouseover", e => btn.classList.add("hover-enter"));
     btn.addEventListener("mouseleave", e => btn.classList.remove("hover-enter"));
 }
@@ -24,18 +24,6 @@ function ValidatePassword(password) {
 }
 
 /*********************************************************************************************************/
-
-class User {
-    id;
-    email;
-    password;
-
-    constructor(id, email, password) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-    }
-}
 
 function Register(email, password) {
     fetch(`https://localhost:7050/api/user/getbyemail/${email}`, {
@@ -94,5 +82,22 @@ function DeleteUser(id) {
             "Content-Type": "application/json"
         }
     })
+        .catch(err => console.error(err));
+}
+
+
+
+export function SaveUserID(id) {
+    document.cookie = `userID = ${id}`
+}
+
+export function CheckForAdminPrivilages() {
+    return fetch(`https://localhost:7050/api/user/getbyid/admin/${document.cookie.replace(/\D/g, "")}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(res => res.json())
         .catch(err => console.error(err));
 }

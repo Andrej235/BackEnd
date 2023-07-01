@@ -1,5 +1,6 @@
 body {
     background-color: #181818;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 #class-table {
@@ -16,7 +17,7 @@ body {
 }
 
     .class-row.selected {
-        transform: translate(17.5%, 0);
+        transform: translate(15%, 0);
     }
 
 .class-row, #day-title {
@@ -27,21 +28,24 @@ body {
         height: 7vh;
         border: 3px solid #fff;
         color: #fff;
-        font-size: 3rem;
-        padding: 0.1em 0.5em;
+        font-size: 2.5vw /*3rem*/;
     }
 
-    .class-row[data-has-task="true"] * {
+    .class-row[data-has-task="true"] .class-name {
         border-right: solid #ba2a2a;
     }
 
 .class-number {
     border-radius: 10px 0 0 10px;
+    padding: 0.1em 0.5em;
 }
 
 .class-name {
-    min-width: 7em;
+    white-space: nowrap;
+    min-width: 10vw;
+    max-width: 15vw;
     border-radius: 0 50px 50px 0;
+    padding: 0.1em 2.5em 0.1em 0.5em;
 }
 
 #time-frame {
@@ -80,6 +84,8 @@ body {
     font-size: 5rem;
     padding: 0.33em;
     margin: 0;
+    /*    min-width: 7em;*/
+    text-align: center;
 }
 
 .arrow {
@@ -108,3 +114,76 @@ body {
 #day-title-wrapper:hover .arrow {
     opacity: 1;
 }
+
+
+#task-wrapper {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#task-type, #task-type-edit-input {
+    color: #fff;
+    font-size: 4rem;
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -125%);
+    min-height: 7vh;
+    max-height: 12vh;
+    min-width: 35vw;
+    max-width: 35vw;
+    white-space: break-spaces;
+    opacity: 0;
+}
+
+#task-description, #task-description-edit-input {
+    color: #aaa;
+    font-size: 2.75rem;
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    min-height: 4vh;
+    max-height: 7vh;
+    min-width: 25vw;
+    max-width: 25vw;
+    white-space: break-spaces;
+    opacity: 0;
+}
+
+#task-type-edit-input, #task-description-edit-input {
+    border: 3px solid #fff;
+    outline-color: #aaa;
+    border-radius: 33px;
+    color: #fff;
+    background: #181818;
+    padding: 0.125em 0.5em;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+    #task-type.active, #task-description.active, #task-type-edit-input.active, #task-description-edit-input.active {
+        opacity: 1;
+    }
+
+#task-edit-btn {
+    font-size: 4rem;
+    color: #aaa;
+    /*    border: 1px solid #fff;*/
+    position: absolute;
+    top: 5.5vh;
+    left: 5.5vh;
+    cursor: pointer;
+    transition: 150ms;
+    transform: translate(-50%, -50%);
+}
+
+    #task-edit-btn:hover {
+        font-size: 5rem;
+        color: #fff;
+    }

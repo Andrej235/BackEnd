@@ -11,13 +11,9 @@ function AddBlobEffectToMouse(blobID = "blob", speed = 5000) {
     };
 }
 
-let isHamburgerMenuExpended = false;
 const hamburgerMenu = document.querySelector(".hamburger-menu");
 hamburgerMenu.addEventListener("click", e => {
     hamburgerMenu.querySelector(".navigation-items-list").classList.toggle("active");
-
-    isHamburgerMenuExpended = !isHamburgerMenuExpended;
-    console.log("Open/Close nav menu " + isHamburgerMenuExpended);
 });
 
 const navItems = hamburgerMenu.querySelectorAll(".navigation-item");
