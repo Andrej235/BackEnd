@@ -9,8 +9,8 @@
       "PackagePath": "staticwebassets\\css\\layoutStyle.css"
     },
     {
-      "Id": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\css\\style.css",
-      "PackagePath": "staticwebassets\\css\\style.css"
+      "Id": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\css\\profileStyle.css",
+      "PackagePath": "staticwebassets\\css\\profileStyle.css"
     },
     {
       "Id": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\css\\taskPageStyle.css",
@@ -39,6 +39,10 @@
     {
       "Id": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\js\\main.js",
       "PackagePath": "staticwebassets\\js\\main.js"
+    },
+    {
+      "Id": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\js\\profilePageLogic.js",
+      "PackagePath": "staticwebassets\\js\\profilePageLogic.js"
     },
     {
       "Id": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\js\\registerpage.js",

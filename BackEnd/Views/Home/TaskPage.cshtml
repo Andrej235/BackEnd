@@ -14,7 +14,8 @@
 </head>
 
 <body>
-    <div id="task-edit-btn" class="fa-solid fa-pencil"></div>
+    <div id="task-edit-btn" class="fa-solid fa-pencil" draggable="false"></div>
+    <div id="task-delete-btn" class="fa-solid fa-eraser" draggable="false"></div>
 
     <div id="day-title-wrapper">
         <div class="arrow fa-solid fa-arrow-left"></div>
@@ -35,7 +36,7 @@
     <table id="class-table"></table>
 
     <template id="class-row-template">
-        <tr class="class-row" data-time-frame="" data-has-task="false">
+        <tr class="class-row" data-time-frame="">
             <td class="class-number"></td>
             <td class="class-name"></td>
         </tr>

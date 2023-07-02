@@ -87,3 +87,53 @@ body {
     position: relative;
     top: 375%;
 }
+
+
+
+#name-title {
+    text-align: center;
+    font-size: 5rem;
+    color: #fff;
+}
+
+#email-title {
+    text-align: center;
+    font-size: 3rem;
+    color: #aaa;
+}
+
+#log-out-btn {
+    width: 20vw;
+    height: 5vw;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #aaa;
+    border: 5px solid #fff;
+    border-radius: 15px;
+    transition: 300ms;
+    cursor: pointer;
+}
+
+    #log-out-btn h1 {
+        text-align: center;
+        font-size: 2.33vw;
+        color: #000;
+        transition: 200ms;
+        transform: translate(-50%, -50%);
+        position: relative;
+        top: 50%;
+        left: 50%;
+        margin: 0;
+    }
+
+    #log-out-btn:hover {
+        background-color: #333; /*Use #f33 for dramatic red button on hover*/
+        border-radius: 75px;
+    }
+
+        #log-out-btn:hover h1 {
+            font-size: 2.75vw;
+            color: #fff;
+        }

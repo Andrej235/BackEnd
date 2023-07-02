@@ -42,12 +42,14 @@ async function PopulateTable(dayID) {
         const classRow = newClassRow.querySelector(".class-row");
 
         classRow.dataset.timeFrame = `${classInfo.classTimeFrame.startHour}:${classInfo.classTimeFrame.startMinute > 9 ? classInfo.classTimeFrame.startMinute : "0" + classInfo.classTimeFrame.startMinute} - ${classInfo.classTimeFrame.endHour}:${classInfo.classTimeFrame.endMinute > 9 ? classInfo.classTimeFrame.endMinute : "0" + classInfo.classTimeFrame.endMinute}`;
+        classRow.dataset.classId = classInfo.id;
 
         newClassRow.querySelector(".class-number").append(classInfo.classTimeFrame.id);
         newClassRow.querySelector(".class-name").append(classInfo.name);
 
         if (classInfo.task !== null) {
-            newClassRow.querySelector(".class-row").dataset.hasTask = "true";
+            classRow.dataset.hasTask = "true"; //This is used in css
+            classRow.dataset.taskId = classInfo.task.id;
             classRow.dataset.taskType = classInfo.task.type;
             classRow.dataset.taskDescription = classInfo.task.description;
         }
@@ -63,9 +65,9 @@ async function PopulateTable(dayID) {
                 ToggleEditMode();
             }
 
-            if (classRow.dataset.taskType !== undefined) {
-                taskType.innerText = `${classRow.dataset.taskType}`;
-                taskDescription.innerText = `${classRow.dataset.taskDescription}`;
+            if (classRow.dataset.hasTask === "true") {
+                taskType.innerText = classRow.dataset.taskType;
+                taskDescription.innerText = classRow.dataset.taskDescription;
             }
             else {
                 taskType.innerText = ``;
@@ -105,11 +107,42 @@ rightArrowForward.addEventListener("click", e => {
 
 //Edit mode
 const editBtn = document.querySelector("#task-edit-btn");
+const deleteBtn = document.querySelector("#task-delete-btn");
 const editTaskTypeInputField = document.querySelector("#task-type-edit-input");
 const editTaskDescriptionInputField = document.querySelector("#task-description-edit-input");
 let isEditModeEnabled = false;
 editBtn.addEventListener("click", e => {
     ToggleEditMode();
+});
+
+deleteBtn.addEventListener("click", e => {
+    let selectedRow;
+    document.querySelectorAll(".class-row").forEach(row => {
+        if (row.classList.contains("selected")) {
+            selectedRow = row;
+        }
+    })
+
+    if (isEditModeEnabled) {
+        fetch(`https://localhost:7050/api/task/removefromclass/${selectedRow.dataset.classId}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(() => {
+                selectedRow.dataset.hasTask = "false";
+
+                editTaskTypeInputField.value = "";
+                editTaskDescriptionInputField.value = "";
+                taskType.innerText = "";
+                taskDescription.innerText = "";
+
+                ToggleEditMode();
+                console.log(`Removed task from class with id: ${selectedRow.dataset.classId}`);
+            })
+            .catch(err => console.error(err))
+    }
 });
 
 async function ToggleEditMode() {
@@ -121,16 +154,75 @@ async function ToggleEditMode() {
     })
 
     if (selectedRow !== undefined) {
-        isEditModeEnabled = !isEditModeEnabled;
         const isAdmin = await CheckForAdminPrivilages();
+        if (!isAdmin)
+            return;
 
         editTaskTypeInputField.classList.toggle("active");
         editTaskDescriptionInputField.classList.toggle("active");
         taskType.classList.toggle("active");
         taskDescription.classList.toggle("active");
 
-        editTaskTypeInputField.value = taskType.innerText;
-        editTaskDescriptionInputField.value = taskDescription.innerText;
-        console.log(isAdmin ? "Entering edit mode..." : "Only admin accounts can access edit mode...");
+        selectedRow.dataset.hasTask === "true" ? deleteBtn.classList.toggle("active") : deleteBtn.classList.remove("active");
+
+        if (!isEditModeEnabled) {
+            editTaskTypeInputField.value = taskType.innerText;
+            editTaskDescriptionInputField.value = taskDescription.innerText;
+            console.log("Entering edit mode...");
+        }
+        else {
+            if (selectedRow.dataset.hasTask === "true") {
+                //Edit
+                fetch(`https://localhost:7050/api/task/${selectedRow.dataset.taskId}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        type: editTaskTypeInputField.value,
+                        description: editTaskDescriptionInputField.value
+                    })
+                })
+                    .then(res => res.json())
+                    .then(res => {
+                        taskType.innerText = res.type;
+                        taskDescription.innerText = res.description;
+
+                        selectedRow.dataset.taskType = res.type;
+                        selectedRow.dataset.taskDescription = res.description;
+
+                        console.log("Updated task info");
+                    })
+                    .catch(err => console.error(err))
+            }
+            else if (editTaskTypeInputField.value !== "" || editTaskDescriptionInputField.value !== "") {
+                //Add task to class with id selectedRow.dataset.classId
+                fetch(`https://localhost:7050/api/task/add/${selectedRow.dataset.classId}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        type: editTaskTypeInputField.value,
+                        description: editTaskDescriptionInputField.value
+                    })
+                })
+                    .then(res => res.json())
+                    .then(newTask => {
+                        selectedRow.dataset.hasTask = "true";
+                        selectedRow.dataset.taskId = newTask.id;
+                        selectedRow.dataset.taskType = newTask.type;
+                        selectedRow.dataset.taskDescription = newTask.description;
+
+                        taskType.innerText = newTask.type;
+                        taskDescription.innerText = newTask.description;
+                    })
+                    .catch(err => console.error(err));
+            }
+
+            console.log("Exiting edit mode...");
+        }
+
+        isEditModeEnabled = !isEditModeEnabled;
     }
 }

@@ -27,14 +27,13 @@ async function LogIn() {
                 throw new Error(res.status);
         })
         .then(res => {
-            console.log(passwordInputField.value + "   " + res.password);
             if (passwordInputField.value === res.password) {
                 console.log("Logged in");
                 SaveUserID(res.id);
+                document.location = "ProfilePage";
             }
-            else {
+            else
                 console.log("Invalid log in information");
-            }
         })
         .catch(err => console.error(err));
 }

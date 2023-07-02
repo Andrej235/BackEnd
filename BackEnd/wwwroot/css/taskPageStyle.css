@@ -178,12 +178,28 @@ body {
     position: absolute;
     top: 5.5vh;
     left: 5.5vh;
+    transform: translate(-50%, -50%);
     cursor: pointer;
     transition: 150ms;
-    transform: translate(-50%, -50%);
 }
 
-    #task-edit-btn:hover {
+    #task-edit-btn:hover, #task-delete-btn.active:hover {
         font-size: 5rem;
         color: #fff;
+    }
+
+#task-delete-btn {
+    font-size: 0;
+    color: #aaa;
+    position: absolute;
+    top: 5.5vh;
+    left: 5.5vh;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: 150ms;
+}
+
+    #task-delete-btn.active {
+        left: 15vh;
+        font-size: 4rem;
     }

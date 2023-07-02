@@ -1,5 +1,6 @@
 ﻿using BackEnd.Models;
 using Microsoft.EntityFrameworkCore;
+using Task = BackEnd.Models.Task;
 
 namespace BackEnd.Data
 {
@@ -8,6 +9,7 @@ namespace BackEnd.Data
         public DbSet<TimeFrame> TimeFrame { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Day> Days { get; set; }
+        public DbSet<Task> Task { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
