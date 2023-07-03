@@ -11,6 +11,35 @@ const taskDescription = document.querySelector("#task-description");
 let currentShownDay = new Date().getDay();
 currentShownDay = currentShownDay < 5 ? currentShownDay > 1 ? currentShownDay : 1 : 5;
 PopulateTable(currentShownDay);
+
+const dayTitleDropDownMenuWrapper = document.querySelector("#day-title-dropdown-menu-wrapper");
+const dayTitleDropDownMenu = document.querySelector("#day-title-dropdown-menu");
+dayTitleDropDownMenuWrapper.addEventListener("click", () => dayTitleDropDownMenu.classList.toggle("active"));
+
+const morningShiftBtn = document.querySelector("#morning-shift-btn");
+const noonShiftBtn = document.querySelector("#noon-shift-btn");
+let isOnMorningShift = true;
+
+morningShiftBtn.addEventListener("click", () => {
+    if (!isOnMorningShift) {
+        console.log("Switch to morning shift");
+        isOnMorningShift = true;
+
+        morningShiftBtn.classList.toggle("selected");
+        noonShiftBtn.classList.toggle("selected");
+    }
+})
+
+noonShiftBtn.addEventListener("click", () => {
+    if (isOnMorningShift) {
+        console.log("Switch to noon shift");
+        isOnMorningShift = false;
+
+        morningShiftBtn.classList.toggle("selected");
+        noonShiftBtn.classList.toggle("selected");
+    }
+})
+
 function GetAllClassesInADay(id) {
     return fetch(`https://localhost:7050/api/day/getclasses/${id}`, {
         method: "GET",
@@ -19,10 +48,6 @@ function GetAllClassesInADay(id) {
         }
     })
         .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            return data;
-        })
         .catch(err => console.error(err));
 }
 
@@ -31,8 +56,7 @@ async function PopulateTable(dayID) {
     const day = await GetAllClassesInADay(dayID);
     const classes = day.classes;
 
-    //dayTitle.append(`${dayNames[day.name]}`);
-    dayTitle.innerText = `${dayNames[day.name]}`;
+    dayTitle.innerText = dayNames[day.name];
     timeFrameTitle.innerText = "";
     taskType.innerText = ``;
     taskDescription.innerText = ``;
@@ -48,7 +72,7 @@ async function PopulateTable(dayID) {
         newClassRow.querySelector(".class-name").append(classInfo.name);
 
         if (classInfo.task !== null) {
-            classRow.dataset.hasTask = "true"; //This is used in css
+            classRow.dataset.hasTask = "true"; //This is also used in css
             classRow.dataset.taskId = classInfo.task.id;
             classRow.dataset.taskType = classInfo.task.type;
             classRow.dataset.taskDescription = classInfo.task.description;
@@ -61,9 +85,8 @@ async function PopulateTable(dayID) {
     let selectedClassRow = classRows[0];
     classRows.forEach(classRow => {
         classRow.querySelector(".class-name").addEventListener("click", e => {
-            if (isEditModeEnabled) {
+            if (isEditModeEnabled)
                 ToggleEditMode();
-            }
 
             if (classRow.dataset.hasTask === "true") {
                 taskType.innerText = classRow.dataset.taskType;
@@ -111,6 +134,11 @@ const deleteBtn = document.querySelector("#task-delete-btn");
 const editTaskTypeInputField = document.querySelector("#task-type-edit-input");
 const editTaskDescriptionInputField = document.querySelector("#task-description-edit-input");
 let isEditModeEnabled = false;
+
+const isAdmin = await CheckForAdminPrivilages();
+if (isAdmin)
+    editBtn.classList.add("active");
+
 editBtn.addEventListener("click", e => {
     ToggleEditMode();
 });
@@ -153,76 +181,72 @@ async function ToggleEditMode() {
         }
     })
 
-    if (selectedRow !== undefined) {
-        const isAdmin = await CheckForAdminPrivilages();
-        if (!isAdmin)
-            return;
+    if (selectedRow === undefined)
+        return;
 
-        editTaskTypeInputField.classList.toggle("active");
-        editTaskDescriptionInputField.classList.toggle("active");
-        taskType.classList.toggle("active");
-        taskDescription.classList.toggle("active");
+    editTaskTypeInputField.classList.toggle("active");
+    editTaskDescriptionInputField.classList.toggle("active");
+    taskType.classList.toggle("active");
+    taskDescription.classList.toggle("active");
 
-        selectedRow.dataset.hasTask === "true" ? deleteBtn.classList.toggle("active") : deleteBtn.classList.remove("active");
+    selectedRow.dataset.hasTask === "true" ? deleteBtn.classList.toggle("active") : deleteBtn.classList.remove("active");
 
-        if (!isEditModeEnabled) {
-            editTaskTypeInputField.value = taskType.innerText;
-            editTaskDescriptionInputField.value = taskDescription.innerText;
-            console.log("Entering edit mode...");
-        }
-        else {
-            if (selectedRow.dataset.hasTask === "true") {
-                //Edit
-                fetch(`https://localhost:7050/api/task/${selectedRow.dataset.taskId}`, {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        type: editTaskTypeInputField.value,
-                        description: editTaskDescriptionInputField.value
-                    })
-                })
-                    .then(res => res.json())
-                    .then(res => {
-                        taskType.innerText = res.type;
-                        taskDescription.innerText = res.description;
-
-                        selectedRow.dataset.taskType = res.type;
-                        selectedRow.dataset.taskDescription = res.description;
-
-                        console.log("Updated task info");
-                    })
-                    .catch(err => console.error(err))
-            }
-            else if (editTaskTypeInputField.value !== "" || editTaskDescriptionInputField.value !== "") {
-                //Add task to class with id selectedRow.dataset.classId
-                fetch(`https://localhost:7050/api/task/add/${selectedRow.dataset.classId}`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        type: editTaskTypeInputField.value,
-                        description: editTaskDescriptionInputField.value
-                    })
-                })
-                    .then(res => res.json())
-                    .then(newTask => {
-                        selectedRow.dataset.hasTask = "true";
-                        selectedRow.dataset.taskId = newTask.id;
-                        selectedRow.dataset.taskType = newTask.type;
-                        selectedRow.dataset.taskDescription = newTask.description;
-
-                        taskType.innerText = newTask.type;
-                        taskDescription.innerText = newTask.description;
-                    })
-                    .catch(err => console.error(err));
-            }
-
-            console.log("Exiting edit mode...");
-        }
-
-        isEditModeEnabled = !isEditModeEnabled;
+    if (!isEditModeEnabled) {
+        editTaskTypeInputField.value = taskType.innerText;
+        editTaskDescriptionInputField.value = taskDescription.innerText;
+        console.log("Entering edit mode...");
     }
+    else {
+        if (selectedRow.dataset.hasTask === "true") {
+            //Edit
+            fetch(`https://localhost:7050/api/task/${selectedRow.dataset.taskId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    type: editTaskTypeInputField.value,
+                    description: editTaskDescriptionInputField.value
+                })
+            })
+                .then(res => res.json())
+                .then(res => {
+                    taskType.innerText = res.type;
+                    taskDescription.innerText = res.description;
+
+                    selectedRow.dataset.taskType = res.type;
+                    selectedRow.dataset.taskDescription = res.description;
+
+                    console.log("Updated task info");
+                })
+                .catch(err => console.error(err))
+        }
+        else if (editTaskTypeInputField.value !== "" || editTaskDescriptionInputField.value !== "") {
+            //Add task to class with id selectedRow.dataset.classId
+            fetch(`https://localhost:7050/api/task/add/${selectedRow.dataset.classId}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    type: editTaskTypeInputField.value,
+                    description: editTaskDescriptionInputField.value
+                })
+            })
+                .then(res => res.json())
+                .then(newTask => {
+                    selectedRow.dataset.hasTask = "true";
+                    selectedRow.dataset.taskId = newTask.id;
+                    selectedRow.dataset.taskType = newTask.type;
+                    selectedRow.dataset.taskDescription = newTask.description;
+
+                    taskType.innerText = newTask.type;
+                    taskDescription.innerText = newTask.description;
+                })
+                .catch(err => console.error(err));
+        }
+
+        console.log("Exiting edit mode...");
+    }
+    isEditModeEnabled = !isEditModeEnabled;
 }

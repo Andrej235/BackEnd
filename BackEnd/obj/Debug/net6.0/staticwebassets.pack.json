@@ -21,10 +21,6 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\js\\FancyEffects.js",
-      "PackagePath": "staticwebassets\\js\\FancyEffects.js"
-    },
-    {
       "Id": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\js\\homePage.js",
       "PackagePath": "staticwebassets\\js\\homePage.js"
     },

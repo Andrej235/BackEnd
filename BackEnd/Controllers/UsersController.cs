@@ -50,10 +50,19 @@ namespace BackEnd.Controllers
 
         [HttpPost]
         [Route("api/user/create")]
-        public async void AddUser(User user)
+        public async Task<IActionResult> AddUser(User user)
         {
+            var userAlreadyExists = await context.User.FirstOrDefaultAsync(u => u.Email == user.Email) != null;
+            if (userAlreadyExists)
+                return BadRequest("User with email " + user.Email + " already exists");
+
+            var isInfoValid = user.Email.Contains("@gmail.com") && user.Password.Length > 7;
+            if (!isInfoValid)
+                return BadRequest("Invalid register info");
+
             await context.User.AddAsync(user);
             await context.SaveChangesAsync();
+            return Ok(user);
         }
 
         [HttpDelete]

@@ -17,12 +17,6 @@
     <div id="task-edit-btn" class="fa-solid fa-pencil" draggable="false"></div>
     <div id="task-delete-btn" class="fa-solid fa-eraser" draggable="false"></div>
 
-    <div id="day-title-wrapper">
-        <div class="arrow fa-solid fa-arrow-left"></div>
-        <h1 id="day-title"></h1>
-        <div class="arrow fa-solid fa-arrow-right"></div>
-    </div>
-
     <div id="task-wrapper">
         <h1 id="task-type" class="active"></h1>
         <h2 id="task-description" class="active"></h2>
@@ -34,6 +28,29 @@
     <h2 id="time-frame"></h2>
 
     <table id="class-table"></table>
+
+    <div id="day-title-wrapper">
+        <div class="arrow fa-solid fa-arrow-left"></div>
+
+        <div id="day-title-dropdown-menu-wrapper">
+            <h1 id="day-title"></h1>
+            <div id="day-title-dropdown-menu">
+                <div class="day-title-dropdown-menu-item">
+                    <h1></h1>
+                </div>
+
+                <div class="day-title-dropdown-menu-item selected" id="morning-shift-btn">
+                    <h1>Morning</h1>
+                </div>
+
+                <div class="day-title-dropdown-menu-item" id="noon-shift-btn">
+                    <h1>Noon</h1>
+                </div>
+            </div>
+        </div>
+        <div class="arrow fa-solid fa-arrow-right"></div>
+    </div>
+
 
     <template id="class-row-template">
         <tr class="class-row" data-time-frame="">

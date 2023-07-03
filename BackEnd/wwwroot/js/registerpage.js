@@ -1,14 +1,15 @@
+import { Register } from '/js/main.js'
 const registerBtn = document.querySelector(".submit-btn");
 AddHoverAnimationsToButton(registerBtn);
 
+const nameInputField = document.querySelector(".name-input");
 const emailInputField = document.querySelector(".email-input");
 const passwordInputField = document.querySelector(".password-input");
 const repeatPasswordInputField = document.querySelector(".repeat-password-input");
 registerBtn.addEventListener("click", e => {
-    if (ValidateEmail(emailInputField.value) && ValidatePasswordAndRepeatPassword())
-        Register(emailInputField.value, passwordInputField.value);
+    console.log(nameInputField.value);
+    if (passwordInputField.value === repeatPasswordInputField.value)
+        Register(nameInputField.value, emailInputField.value, passwordInputField.value);
     else
-        console.log("Invalid input");
+        console.log("Passwords don't match");
 });
-
-const ValidatePasswordAndRepeatPassword = () => passwordInputField.value === repeatPasswordInputField.value && ValidatePassword(passwordInputField.value)

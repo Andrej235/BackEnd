@@ -15,23 +15,18 @@
 <body>
 
     <div class="center-children-grid">
-        <div id="popup" class="popup-appear">
-            <h1 id="log-in-title">Welcome!</h1>
+        <h1 id="log-in-title">Welcome!</h1>
 
-            <div class="center-children-grid">
-                <input type="text" name="emailInput" placeholder="Email" class="input-field email-input">
-                <input type="password" name="passwordInput" placeholder="Password" class="input-field password-input">
-                <div class="center-children-grid">
-                    <div class="submit-btn center-children-grid">
-                        <h1 class="submit-btn-title">Log In</h1>
-                    </div>
-                    <a id="register-link" asp-area="" asp-controller="Home" asp-action="RegisterPage">Register</a>
-                </div>
+        <input type="text" name="emailInput" placeholder="Email" class="login-input-field email-input">
+        <input type="password" name="passwordInput" placeholder="Password" class="login-input-field password-input">
+        <div class="center-children-grid">
+            <div class="submit-btn login-btn center-children-grid">
+                <h1 class="submit-btn-title">Log In</h1>
             </div>
+            <a id="register-link" href="RegisterPage">Register</a>
         </div>
     </div>
 
-    @*<script src="~/js/main.js"></script>*@
     <script type="module" src="~/js/loginpage.js"></script>
 </body>
 

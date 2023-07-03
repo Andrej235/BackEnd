@@ -9,3 +9,18 @@ logOutBtn.addEventListener("click", () => {
     document.location = "LoginPage";
     console.log(document.cookie.replace(/\D/g, ""));
 })
+
+const nameTitle = document.querySelector("#name-title");
+const emailTitle = document.querySelector("#email-title");
+fetch(`https://localhost:7050/api/user/getbyid/${userID}`, {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json"
+    }
+})
+    .then(res => res.json())
+    .then(user => {
+        nameTitle.innerText = user.name;
+        emailTitle.innerText = user.email;
+    })
+    .catch(err => console.error(err));

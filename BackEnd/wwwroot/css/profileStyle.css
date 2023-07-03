@@ -3,6 +3,7 @@ body {
     z-index: -1;
     margin: 0;
     padding: 0;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .center-children-grid {
@@ -10,33 +11,19 @@ body {
     place-content: center;
 }
 
-#popup {
-    height: 100vh;
-    width: 100vw;
+#log-in-title {
     position: absolute;
-    top: 50%;
+    top: 7.5%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /*    border-radius: 3rem;*/
-    /* background-color: #333333; */
-    /* border: 5px solid red; */
-
-    background: rgb(129, 145, 228);
-    background: radial-gradient(circle, rgba(55, 75, 150, 1) 0%, rgba(24, 24, 24, 0.75) 40%);
-    z-index: 3;
-}
-
-#log-in-title {
-    position: relative;
-    top: 20%;
     text-align: center;
     font-size: 5rem;
-    font-family: 'Times New Roman', Times, serif;
     color: white;
+    user-select: none;
 }
 
-.input-field {
-    width: 20vw;
+.login-input-field, .register-input-field {
+    width: 25vw;
     height: 4vh;
     border-radius: 3rem;
     border: 0.25rem solid black;
@@ -45,48 +32,80 @@ body {
     outline: 0;
     padding: 0.75rem 1.5rem 0.75rem 1.5rem;
     margin: 0.33rem;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.email-input {
-    position: relative;
-    top: 190%;
+.email-input.login-input-field, .name-input.register-input-field {
+    top: 30%;
 }
 
-.password-input {
-    position: relative;
-    top: 193%;
+.password-input.login-input-field, .email-input.register-input-field {
+    top: 39%;
 }
+
+.password-input.register-input-field {
+    top: 48%;
+}
+
+.repeat-password-input.register-input-field {
+    top: 57%;
+}
+
 
 .submit-btn {
-    position: relative;
-    top: 350%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 15vw;
     height: 5vh;
     border: 0.25rem solid black;
     border-radius: 1rem;
     background-color: #fff;
     cursor: pointer;
-    transition: 0.33s;
+    transition: 300ms;
 }
 
-    .submit-btn.hover-enter {
+    .submit-btn.login-btn {
+        top: 50%;
+    }
+
+    .submit-btn.register-btn {
+        top: 68%;
+    }
+
+    .submit-btn:hover {
         background-color: #a9a9a9;
         color: #2b2b2b;
     }
 
 .submit-btn-title {
     font-size: 2rem;
-    font-family: 'Times New Roman', Times, serif;
 }
 
 #register-link, #login-link {
     font-size: 1.5rem;
     color: #fff;
     text-decoration: none;
-    text-align: right;
-    position: relative;
-    top: 375%;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
+#register-link {
+    top: 55%;
+}
+
+#login-link {
+    top: 73%;
+}
+
+    #register-link:hover, #login-link:hover {
+        color: #aaa;
+        text-decoration: underline 3px solid #aaa;
+    }
 
 
 

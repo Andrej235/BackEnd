@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cBvqVudgwvoPhk55nyzWAauWHIaqKESOdT7ONXHDVIA=",
+  "Hash": "r+k0BgU8KPJjGATw0hdS+ZbVtFZsXFBcgQ0/JGf2tfA=",
   "Source": "BackEnd",
   "BasePath": "_content/BackEnd",
   "Mode": "Default",
@@ -100,23 +100,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
-    },
-    {
-      "Identity": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\js\\FancyEffects.js",
-      "SourceId": "BackEnd",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\",
-      "BasePath": "_content/BackEnd",
-      "RelativePath": "js/FancyEffects.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\FancyEffects.js"
     },
     {
       "Identity": "C:\\FolderOfFolders\\Code\\.LeetCode\\BackEnd\\BackEnd\\wwwroot\\js\\homePage.js",
