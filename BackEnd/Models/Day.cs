@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public virtual ICollection<Class> Classes { get; set; } = null!;
         public DayName Name { get; set; }
+        public int Shift { get; set; }
 
         public enum DayName
         {

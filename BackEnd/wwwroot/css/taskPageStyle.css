@@ -38,6 +38,7 @@ body {
 .class-number {
     border-radius: 10px 0 0 10px;
     padding: 0.1em 0.5em;
+    text-align: center;
 }
 
 .class-name {
@@ -173,6 +174,7 @@ body {
 
     .arrow:hover {
         font-size: 4.25rem;
+        cursor: pointer;
     }
 
 /*#day-title-wrapper:has(#day-title:hover) .arrow{*/

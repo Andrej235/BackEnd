@@ -10,7 +10,6 @@ const taskDescription = document.querySelector("#task-description");
 
 let currentShownDay = new Date().getDay();
 currentShownDay = currentShownDay < 5 ? currentShownDay > 1 ? currentShownDay : 1 : 5;
-PopulateTable(currentShownDay);
 
 const dayTitleDropDownMenuWrapper = document.querySelector("#day-title-dropdown-menu-wrapper");
 const dayTitleDropDownMenu = document.querySelector("#day-title-dropdown-menu");
@@ -27,6 +26,8 @@ morningShiftBtn.addEventListener("click", () => {
 
         morningShiftBtn.classList.toggle("selected");
         noonShiftBtn.classList.toggle("selected");
+
+        PopulateTable(currentShownDay);
     }
 })
 
@@ -37,11 +38,13 @@ noonShiftBtn.addEventListener("click", () => {
 
         morningShiftBtn.classList.toggle("selected");
         noonShiftBtn.classList.toggle("selected");
+
+        PopulateTable(currentShownDay);
     }
 })
 
-function GetAllClassesInADay(id) {
-    return fetch(`https://localhost:7050/api/day/getclasses/${id}`, {
+function GetAllClassesInADay(dayId, shiftId) {
+    return fetch(`https://localhost:7050/api/day/getclasses/${dayId - 1}/${shiftId}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -53,7 +56,7 @@ function GetAllClassesInADay(id) {
 
 async function PopulateTable(dayID) {
     classTable.innerHTML = "";
-    const day = await GetAllClassesInADay(dayID);
+    const day = await GetAllClassesInADay(dayID, isOnMorningShift ? 1 : 2);
     const classes = day.classes;
 
     dayTitle.innerText = dayNames[day.name];
@@ -88,6 +91,8 @@ async function PopulateTable(dayID) {
             if (isEditModeEnabled)
                 ToggleEditMode();
 
+            dayTitleDropDownMenu.classList.remove("active");
+
             if (classRow.dataset.hasTask === "true") {
                 taskType.innerText = classRow.dataset.taskType;
                 taskDescription.innerText = classRow.dataset.taskDescription;
@@ -115,6 +120,9 @@ leftArrowBack.addEventListener("click", e => {
     if (currentShownDay < 1)
         currentShownDay = 5;
 
+    if (isEditModeEnabled)
+        ToggleEditMode(false);
+
     PopulateTable(currentShownDay);
 });
 
@@ -122,6 +130,9 @@ rightArrowForward.addEventListener("click", e => {
     currentShownDay++;
     if (currentShownDay > 5)
         currentShownDay = 1;
+
+    if (isEditModeEnabled)
+        ToggleEditMode(false);
 
     PopulateTable(currentShownDay);
 });
@@ -173,7 +184,7 @@ deleteBtn.addEventListener("click", e => {
     }
 });
 
-async function ToggleEditMode() {
+async function ToggleEditMode(saveChanges = true) {
     let selectedRow;
     document.querySelectorAll(".class-row").forEach(row => {
         if (row.classList.contains("selected")) {
@@ -196,7 +207,7 @@ async function ToggleEditMode() {
         editTaskDescriptionInputField.value = taskDescription.innerText;
         console.log("Entering edit mode...");
     }
-    else {
+    else if (saveChanges) {
         if (selectedRow.dataset.hasTask === "true") {
             //Edit
             fetch(`https://localhost:7050/api/task/${selectedRow.dataset.taskId}`, {
@@ -250,3 +261,6 @@ async function ToggleEditMode() {
     }
     isEditModeEnabled = !isEditModeEnabled;
 }
+
+//Keep at the end so all the variables get asigned before invoking the PopulateTable function
+PopulateTable(currentShownDay);
